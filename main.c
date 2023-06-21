@@ -1,20 +1,23 @@
-#include <string.h>
-#include "monty.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include "monty.h"
 
 /**
- * error_usage - will print the usage message and exit
- * Return: null
+ * error_usage - prints usage message and exits
+ *
+ * Return: nothing
  */
 void error_usage(void)
 {
 	fprintf(stderr, "USAGE: monty file\n");
 	exit(EXIT_FAILURE);
 }
+
 /**
- * file_error - will print the file error message and exit
- * @argv: argument vector
+ * file_error - prints file error message and exits
+ * @argv: argv given by manin
+ *
  * Return: nothing
  */
 void file_error(char *argv)
@@ -25,10 +28,11 @@ void file_error(char *argv)
 
 int status = 0;
 /**
- * main - point of entry
- * @argv: argument list passed
- * @argc: argumrnt amount
- * Return: null
+ * main - entry point
+ * @argv: list of arguments passed to our program
+ * @argc: ammount of args
+ *
+ * Return: nothing
  */
 int main(int argc, char **argv)
 {
@@ -37,9 +41,9 @@ int main(int argc, char **argv)
 	char *buffer = NULL;
 	char *str = NULL;
 	stack_t *stack = NULL;
-	unsigned int line_count = 1;
+	unsigned int line_cnt = 1;
 
-	global.struct_data = 1;
+	global.data_struct = 1;
 	if (argc != 2)
 		error_usage();
 
@@ -54,18 +58,18 @@ int main(int argc, char **argv)
 			break;
 		if (*buffer == '\n')
 		{
-			line_count++;
+			line_cnt++;
 			continue;
 		}
 		str = strtok(buffer, " \t\n");
 		if (!str || *str == '#')
 		{
-			line_count++;
+			line_cnt++;
 			continue;
 		}
-		global.args = strtok(NULL, " \t\n");
-		opcode(&stack, str, line_count);
-		line_count++;
+		global.argument = strtok(NULL, " \t\n");
+		opcode(&stack, str, line_cnt);
+		line_cnt++;
 	}
 	free(buffer);
 	free_stack(stack);

@@ -1,28 +1,30 @@
-#include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
- * push - will push the element into the stack
- * @stack: the given stack
- * @line_count: the ammount of lines
- * Return: null or void
+ * push - push element into the stack
+ * @stack: stack given by main
+ * @line_cnt: ammount of lines
+ *
+ * Return: void
  */
-void push(stack_t **stack, unsigned int line_count)
+void push(stack_t **stack, unsigned int line_cnt)
 {
-	char *a = global.args;
+	char *n = global.argument;
 
-	if ((is_digit(a)) == 0)
+	if ((is_digit(n)) == 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_count);
+		fprintf(stderr, "L%d: usage: push integer\n", line_cnt);
 		status = EXIT_FAILURE;
 		return;
 	}
-	if (global.struct_data == 1)
+
+	if (global.data_struct == 1)
 	{
-		if (!add_node(stack, atoi(global.args)))
+		if (!add_node(stack, atoi(global.argument)))
 		{
 			return;
 			status = EXIT_FAILURE;
@@ -30,7 +32,7 @@ void push(stack_t **stack, unsigned int line_count)
 	}
 	else
 	{
-		if (!queue_node(stack, atoi(global.args)))
+		if (!queue_node(stack, atoi(global.argument)))
 		{
 			return;
 			status = EXIT_FAILURE;

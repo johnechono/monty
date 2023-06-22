@@ -1,47 +1,80 @@
+#define _POSIX_C_SOURCE 200809L
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 #include "monty.h"
 
-/* global struct to hold flag for queue and stack length */
-var_t var;
+/**
+ * error_usage - prints usage message and exits
+ *
+ * Return: nothing
+ */
+void error_usage(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	exit(EXIT_FAILURE);
+}
 
 /**
- * main - Monty bytecode interpreter
- * @argc: number of arguments passed
- * @argv: array of argument strings
+ * file_error - prints file error message and exits
+ * @argv: argv given by manin
  *
- * Return: EXIT_SUCCESS on success or EXIT_FAILURE on failure
+ * Return: nothing
  */
-int main(int argc, char *argv[])
+void file_error(char *argv)
 {
-	stack_t *stack = NULL;
-	unsigned int line_number = 0;
-	FILE *fs = NULL;
-	char *lineptr = NULL, *op = NULL;
-	size_t n = 0;
+	fprintf(stderr, "Error: Can't open file %s\n", argv);
+	exit(EXIT_FAILURE);
+}
 
-	var.queue = 0;
-	var.stack_len = 0;
+int status = 0;
+/**
+ * main - entry point
+ * @argv: list of arguments passed to our program
+ * @argc: ammount of args
+ *
+ * Return: nothing
+ */
+int main(int argc, char **argv)
+{
+	FILE *file;
+	size_t buf_len = 0;
+	char *buffer = NULL;
+	char *str = NULL;
+	stack_t *stack = NULL;
+	unsigned int line_cnt = 1;
+
+	global.data_struct = 1;
 	if (argc != 2)
+		error_usage();
+
+	file = fopen(argv[1], "r");
+
+	if (!file)
+		file_error(argv[1]);
+	while (getline(&buffer, &buf_len, file) != -1)
 	{
-		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	fs = fopen(argv[1], "r");
-	if (fs == NULL)
-	{
-		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	on_exit(free_lineptr, &lineptr);
-	on_exit(free_stack, &stack);
-	on_exit(m_fs_close, fs);
-	while (getline(&lineptr, &n, fs) != -1)
-	{
-		line_number++;
-		op = strtok(lineptr, "\n\t\r ");
-		if (op != NULL && op[0] != '#')
+		if (status)
+			break;
+		if (*buffer == '\n')
 		{
-			get_op(op, &stack, line_number);
+			line_cnt++;
+			continue;
 		}
+		str = strtok(buffer, " \t\n");
+		if (!str || *str == '#')
+		{
+			line_cnt++;
+			continue;
+		}
+		global.argument = strtok(NULL, " \t\n");
+		opcode(&stack, str, line_cnt);
+		line_cnt++;
 	}
-	exit(EXIT_SUCCESS);
+	free(buffer);
+	free_stack(stack);
+	fclose(file);
+	exit(status);
 }

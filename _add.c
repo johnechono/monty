@@ -10,7 +10,7 @@
  * @line_count: linecount
  * Return: void
  */
-void j_add(stack_t **stack, unsigned int line_cnt)
+void j_add(stack_t **stack, unsigned int line_count)
 {
 	int soln;
 

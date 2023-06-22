@@ -37,8 +37,8 @@ typedef struct instruction_s
 } instruction_t;
 
 #define INSTRUCTIONS { \
-		{"add", _add},\
-		{"sub", _sub},\
+		{"add", j_add},\
+		{"sub", j_sub},\
 		{"mod", mod},\
 		{"pchar", pchar},\
 		{"pstr", pstr},\
@@ -50,8 +50,8 @@ typedef struct instruction_s
 		{"pop", pop},\
 		{"swap", swap},\
 		{"nop", nop},\
-		{"div", _div},\
-		{"mul", _mul},\
+		{"div", j_div},\
+		{"mul", j_mul},\
 		{NULL, NULL} \
 	}
 /**

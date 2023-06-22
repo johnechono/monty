@@ -8,7 +8,7 @@
 */
 void rotr(stack_t **stack, unsigned int line_count)
 {
-	stack_t *previous;
+	stack_t *prev;
 	stack_t *under;
 
 	(void) line_count;
@@ -22,10 +22,10 @@ void rotr(stack_t **stack, unsigned int line_count)
 		under = under->next;
 	}
 
-	previous = under->previous;
+	prev = under->prev;
 	under->next = *stack;
-	under->previous = NULL;
-	previous->next = NULL;
-	(*stack)->previous = under;
+	under->prev = NULL;
+	prev->next = NULL;
+	(*stack)->prev = under;
 	*stack = under;
 }

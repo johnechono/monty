@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
 	global.struct_data = 1;
 	if (argc != 2)
-		error_usage();
+		usage_error();
 	file = fopen(argv[1], "r");
 
 	if (!file)
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 		line_count++;
 	}
 	free(buffer);
-	free_stack(stack);
+	stack_free(stack);
 	fclose(file);
 	exit(status);
 }

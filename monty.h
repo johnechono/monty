@@ -71,7 +71,7 @@ help global;
 extern int status;
 
 int is_digit(char *string);
-int isnumber(char *str);
+int is_number(char *str);
 
 void j_div(stack_t **stack, unsigned int line_count);
 void j_add(stack_t **stack, unsigned int line_count);

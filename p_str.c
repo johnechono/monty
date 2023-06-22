@@ -3,22 +3,23 @@
 #include "monty.h"
 
 /**
- * pstr - prints the contents of a stack_t stack as a string
- * @stack: stack given by main
- * @line_cnt: line counter for error messages
- *
- * Return: nothing
+ * pstr - it will print the contents of a stack_t as a string
+ * @stack: main stack
+ * @line_count: line count
+ * Return: nothing or null
  */
-void pstr(stack_t **stack, unsigned int line_cnt __attribute__((unused)))
+void pstr(stack_t **stack, unsigned int line_count __attribute__((unused)))
 {
-	stack_t *current = *stack;
+	stack_t *live = *stack;
 
-	while (current)
+	while (live)
 	{
-		if (current->n <= 0 || current->n > 127)
+		if (live->n <= 0 || live->n > 127)
+		{
 			break;
-		putchar((char) current->n);
-		current = current->next;
+		}
+		putchar((char) live->n);
+		live = live->next;
 	}
 	putchar('\n');
 }

@@ -3,105 +3,95 @@
 #include "monty.h"
 
 /**
- * queue_node - adds a node to a stack_t stack in queue node
- * @stack: stack head
- * @n: number of the node
- *
- * Return: newly created node, if memory allocation fails, the function will
- * return NULL.
+ * node_queue - will add a node to a  stack in queue
+ * @n: the number of the node
+ * @stack: head of the stack
+ * Return: the newly created node, or NULL if
+ * memory allocation fails
  */
-stack_t *queue_node(stack_t **stack, const int n)
+stack_t *node_queue(stack_t **stack, const int n)
 {
-	stack_t *new = malloc(sizeof(stack_t));
-	stack_t *current = *stack;
+	stack_t *fresh = malloc(sizeof(stack_t));
+	stack_t *live = *stack;
 
-	if (!new)
+	if (!fresh)
 	{
-		free(new);
+		free(fresh);
 		return (NULL);
 	}
-	new->n = n;
+	fresh->n = n;
 
 	if (!*stack)
 	{
-		new->next = NULL;
-		new->prev = NULL;
-		*stack = new;
-		return (new);
+		fresh->next = NULL;
+		fresh->prev = NULL;
+		*stack = fresh;
+		return (fresh);
 	}
 
-	while (current)
+	while (live)
 	{
-		if (!current->next)
+		if (!live->next)
 		{
-			new->next = NULL;
-			new->prev = current;
-			current->next = new;
+			fresh->next = NULL;
+			fresh->prev = live;
+			live->next = fresh;
 			break;
 		}
-		current = current->next;
+		live = live->next;
 	}
 
-	return (new);
+	return (fresh);
 }
-
 /**
- * add_node - adds a node to the start of a stack_t stack
- * @stack: stack head
- * @n: number for the new node
- *
- * Return: newly created node, if creation fails, the
- * function will return NULL.
+ * node_add - will add a node to the start of the stack
+ * @n: the number for the fresh node
+ * @stack: head of the stack
+ * Return: the new node or NULL
  */
-stack_t *add_node(stack_t **stack, const int n)
+stack_t *node_add(stack_t **stack, const int n)
 {
-	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *fresh = malloc(sizeof(stack_t));
 
-	if (!new)
+	if (!fresh)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free(new);
+		free(fresh);
 		return (NULL);
 	}
-	new->n = n;
+	fresh->n = n;
 
-	new->next = *stack;
-	new->prev = NULL;
+	fresh->next = *stack;
+	fresh->prev = NULL;
 	if (*stack)
-		(*stack)->prev = new;
+		(*stack)->prev = fresh;
 
-	*stack = new;
-
-	return (new);
+	*stack = fresh;
+	return (fresh);
 }
-
 /**
- * print_stack - prints the contents of a stack_t stack
- * @stack: stack head
- *
- * Return: number of elements of the list
+ * stack_print - will print the contents of the stack
+ * @stack: head of the stack
+ * Return: elements in the list
  */
-size_t print_stack(const stack_t *stack)
+size_t stack_print(const stack_t *stack)
 {
-	size_t c = 0;
+	size_t a = 0;
 
 	while (stack)
 	{
 		printf("%d\n", stack->n);
 		stack = stack->next;
-		c++;
+		a++;
 	}
-
-	return (c);
+	return (a);
 }
-
 /**
- * free_stack - frees a dlistint_t linked list
- * @stack: list head
- *
- * Return: void
+ * stack_free - will freesthea dlistint_t linked list
+ * @stack: head of the list
+ * Return: void or nothing
  */
-void free_stack(stack_t *stack)
+void stack_free(stack_t *stack)
 {
 	stack_t *current = stack;
 	stack_t *next;

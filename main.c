@@ -1,29 +1,26 @@
 #define _POSIX_C_SOURCE 200809L
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "monty.h"
 
 /**
- * error_usage - prints usage message and exits
- *
- * Return: nothing
+ * usage_error - will print usage message and exit
+ * Return: 0
  */
-void error_usage(void)
+void usage_error(void)
 {
 	fprintf(stderr, "USAGE: monty file\n");
 	exit(EXIT_FAILURE);
 }
-
 /**
- * file_error - prints file error message and exits
- * @argv: argv given by manin
- *
+ * error_file -will print file error message and exit
+ * @argv: argument vector
  * Return: nothing
  */
-void file_error(char *argv)
+void error_file(char *argv)
 {
 	fprintf(stderr, "Error: Can't open file %s\n", argv);
 	exit(EXIT_FAILURE);
@@ -31,47 +28,45 @@ void file_error(char *argv)
 
 int status = 0;
 /**
- * main - entry point
- * @argv: list of arguments passed to our program
- * @argc: ammount of args
- *
- * Return: nothing
+ * main - the entry point
+ * @argc: number of arguments
+ * @argv: the argument list passed
+ * Return: nothing or null
  */
 int main(int argc, char **argv)
 {
 	FILE *file;
-	size_t buf_len = 0;
+	size_t len_buf = 0;
+	stack_t *stack = NULL;
+	unsigned int line_count = 1;
 	char *buffer = NULL;
 	char *str = NULL;
-	stack_t *stack = NULL;
-	unsigned int line_cnt = 1;
 
-	global.data_struct = 1;
+	global.struct_data = 1;
 	if (argc != 2)
 		error_usage();
-
 	file = fopen(argv[1], "r");
 
 	if (!file)
-		file_error(argv[1]);
-	while (getline(&buffer, &buf_len, file) != -1)
+		error_file(argv[1]);
+	while (getline(&buffer, &len_buf, file) != -1)
 	{
 		if (status)
 			break;
 		if (*buffer == '\n')
 		{
-			line_cnt++;
+			line_count++;
 			continue;
 		}
 		str = strtok(buffer, " \t\n");
 		if (!str || *str == '#')
 		{
-			line_cnt++;
+			line_count++;
 			continue;
 		}
-		global.argument = strtok(NULL, " \t\n");
-		opcode(&stack, str, line_cnt);
-		line_cnt++;
+		global.args = strtok(NULL, " \t\n");
+		opcode(&stack, str, line_count);
+		line_count++;
 	}
 	free(buffer);
 	free_stack(stack);

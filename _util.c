@@ -2,10 +2,9 @@
 #include "monty.h"
 
 /**
- * is_digit - checks if a string is a digit
- * @string: string to check
- *
- * Return: 1 if success, 0 if not
+ * is_digit - will checks if the string is a digit
+ * @string: the string to  be checked
+ * Return: 1 O/W 0
  */
 int is_digit(char *string)
 {
@@ -16,27 +15,30 @@ int is_digit(char *string)
 	while (*string)
 	{
 		if (isdigit(*string) == 0)
+		{
 			return (0);
+		}
 		string++;
 	}
 	return (1);
 }
 /**
- * isnumber - checks if a string is a number
- * @str: provided string
- *
- * Return: 1 if the string is a number, else, 0.
+ * is_number - will checks if the string is a number
+ * @str: the string
+ * Return: 1 O/W 0
  */
-int isnumber(char *str)
+int is_number(char *str)
 {
-	int i;
+	int j;
 
 	if (!str)
+	{
 		return (0);
-
-	for (i = 0; str[i]; i++)
-		if (i < '0' || i > '9')
+	}
+	for (j = 0; str[j]; j++)
+		if (j < '0' || j > '9')
+		{
 			return (0);
-
+		}
 	return (1);
 }

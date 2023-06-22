@@ -55,16 +55,16 @@ typedef struct instruction_s
 		{NULL, NULL} \
 	}
 /**
-* struct help - the argument for the current opcode
-* @data_struct: the stack mode and queue
-* @argument:  string argument
+* struct help -  argument for the current opcode
+* @struct_data:  stack mode and queue
+* @args:  the string argument
 * Description: the global structure that is used to easily pass data
 * around the functions
 */
 typedef struct help
 {
-	int data_struct;
-	char *argument;
+	int struct_data;
+	char *args;
 } help;
 help global;
 

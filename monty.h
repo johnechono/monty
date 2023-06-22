@@ -73,10 +73,10 @@ extern int status;
 int is_digit(char *string);
 int isnumber(char *str);
 
-void _div(stack_t **stack, unsigned int line_count);
-void _add(stack_t **stack, unsigned int line_count);
-void _sub(stack_t **stack, unsigned int line_count);
-void _mul(stack_t **stack, unsigned int line_count);
+void j_div(stack_t **stack, unsigned int line_count);
+void j_add(stack_t **stack, unsigned int line_count);
+void j_sub(stack_t **stack, unsigned int line_count);
+void j_mul(stack_t **stack, unsigned int line_count);
 void mod(stack_t **stack, unsigned int line_count);
 void pchar(stack_t **stack, unsigned int line_count);
 void pstr(stack_t **stack, unsigned int line_count);
@@ -92,7 +92,7 @@ void opcode(stack_t **stack, char *str, unsigned int line_count);
 
 void stack_free(stack_t *stack);
 size_t stack_print(const stack_t *stack);
-stack_t *node_add(stack_t **stack, const int j);
-stack_t *node_queue(stack_t **stack, const int j);
+stack_t *node_add(stack_t **stack, const int n);
+stack_t *node_queue(stack_t **stack, const int n);
 
 #endif

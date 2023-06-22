@@ -5,12 +5,12 @@
 #include "monty.h"
 
 /**
- * push - will push an element into the stack
+ * j_push - will push an element into the stack
  * @line_count: line count
  * @stack: the stack the main gives
  * Return: void or nothing
  */
-void push(stack_t **stack, unsigned int line_count)
+void j_push(stack_t **stack, unsigned int line_count)
 {
 	char *a = global.args;
 

@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
-* rotr - will rotate the last node of a stack
+* j_rotr - will rotate the last node of a stack
 * @line_count: the line count
 * @stack: head of the stack
 * Return: void or nothing
 */
-void rotr(stack_t **stack, unsigned int line_count)
+void j_rotr(stack_t **stack, unsigned int line_count)
 {
 	stack_t *prev;
 	stack_t *under;

@@ -39,17 +39,17 @@ typedef struct instruction_s
 #define INSTRUCTIONS { \
 		{"add", j_add},\
 		{"sub", j_sub},\
-		{"mod", mod},\
-		{"pchar", pchar},\
-		{"pstr", pstr},\
-		{"rotl", rotl},\
-		{"rotr", rotr},\
-		{"push", push},\
-		{"pall", pall},\
-		{"pint", pint},\
-		{"pop", pop},\
-		{"swap", swap},\
-		{"nop", nop},\
+		{"mod", j_mod},\
+		{"pchar", j_pchar},\
+		{"pstr", j_pstr},\
+		{"rotl", j_rotl},\
+		{"rotr", j_rotr},\
+		{"push", j_push},\
+		{"pall", j_pall},\
+		{"pint", j_pint},\
+		{"pop", j_pop},\
+		{"swap", j_swap},\
+		{"nop", j_nop},\
 		{"div", j_div},\
 		{"mul", j_mul},\
 		{NULL, NULL} \
@@ -77,18 +77,18 @@ void j_div(stack_t **stack, unsigned int line_count);
 void j_add(stack_t **stack, unsigned int line_count);
 void j_sub(stack_t **stack, unsigned int line_count);
 void j_mul(stack_t **stack, unsigned int line_count);
-void mod(stack_t **stack, unsigned int line_count);
-void pchar(stack_t **stack, unsigned int line_count);
-void pstr(stack_t **stack, unsigned int line_count);
-void rotl(stack_t **stack, unsigned int line_count);
-void rotr(stack_t **stack, unsigned int line_count);
-void push(stack_t **stack, unsigned int line_count);
-void pall(stack_t **stack, unsigned int line_count);
-void pint(stack_t **stack, unsigned int line_count);
-void swap(stack_t **stack, unsigned int line_count);
-void pop(stack_t **stack, unsigned int line_count);
-void nop(stack_t **stack, unsigned int line_count);
-void opcode(stack_t **stack, char *str, unsigned int line_count);
+void j_mod(stack_t **stack, unsigned int line_count);
+void j_pchar(stack_t **stack, unsigned int line_count);
+void j_pstr(stack_t **stack, unsigned int line_count);
+void j_rotl(stack_t **stack, unsigned int line_count);
+void j_rotr(stack_t **stack, unsigned int line_count);
+void j_push(stack_t **stack, unsigned int line_count);
+void j_pall(stack_t **stack, unsigned int line_count);
+void j_pint(stack_t **stack, unsigned int line_count);
+void j_swap(stack_t **stack, unsigned int line_count);
+void j_pop(stack_t **stack, unsigned int line_count);
+void j_nop(stack_t **stack, unsigned int line_count);
+void j_opcode(stack_t **stack, char *str, unsigned int line_count);
 
 void stack_free(stack_t *stack);
 size_t stack_print(const stack_t *stack);

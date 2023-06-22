@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		global.args = strtok(NULL, " \t\n");
-		opcode(&stack, str, line_count);
+		j_opcode(&stack, str, line_count);
 		line_count++;
 	}
 	free(buffer);

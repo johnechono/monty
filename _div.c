@@ -28,6 +28,6 @@ void j_div(stack_t **stack, unsigned int line_count)
 	}
 
 	soln = ((*stack)->next->n) / ((*stack)->n);
-	pop(stack, line_count);
+	j_pop(stack, line_count);
 	(*stack)->n = soln;
 }

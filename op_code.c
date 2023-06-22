@@ -4,13 +4,13 @@
 #include "monty.h"
 
 /**
- * opcode - the function in charge of executing builtins
+ * j_opcode - the function in charge of executing builtins
  * @line_count: line count
  * @stack: the main stack
  * @str: the string to be compared
  * Return: nothing ot null
  */
-void opcode(stack_t **stack, char *str, unsigned int line_count)
+void j_opcode(stack_t **stack, char *str, unsigned int line_count)
 {
 	int j = 0;
 

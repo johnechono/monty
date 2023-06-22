@@ -3,12 +3,12 @@
 #include "monty.h"
 
 /**
- * pstr - it will print the contents of a stack_t as a string
+ * j_pstr - it will print the contents of a stack_t as a string
  * @stack: main stack
  * @line_count: line count
  * Return: nothing or null
  */
-void pstr(stack_t **stack, unsigned int line_count __attribute__((unused)))
+void j_pstr(stack_t **stack, unsigned int line_count __attribute__((unused)))
 {
 	stack_t *live = *stack;
 

@@ -21,6 +21,6 @@ void j_sub(stack_t **stack, unsigned int line_count)
 		return;
 	}
 	soln = ((*stack)->next->n) - ((*stack)->n);
-	pop(stack, line_count);
+	j_pop(stack, line_count);
 	(*stack)->n = soln;
 }

@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
-* rotl - will rotate the first element in the stack
+* j_rotl - will rotate the first element in the stack
 * @stack: head of the stack
 * @line_count: the line count
 * Return: void or nothing
 */
-void rotl(stack_t **stack, unsigned int line_count)
+void j_rotl(stack_t **stack, unsigned int line_count)
 {
 	stack_t *lefty;
 	stack_t *righty;

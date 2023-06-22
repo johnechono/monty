@@ -4,12 +4,12 @@
 #include "monty.h"
 
 /**
- * swap -  will swaps data from the top to previous
+ * j_swap -  will swaps data from the top to previous
  * @line_count: line count
  * @stack: main stack
  * Return: void or nothing
  */
-void swap(stack_t **stack, unsigned int line_count)
+void j_swap(stack_t **stack, unsigned int line_count)
 {
 	stack_t *temp = NULL;
 	int temp_n = 0;

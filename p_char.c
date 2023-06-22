@@ -5,12 +5,12 @@
 #include "monty.h"
 
 /**
- * pchar - will print the int at the top of the stack
+ * j_pchar - will print the int at the top of the stack
  * @line_count: line count
  * @stack: main stack
  * Return: void or nothing
  */
-void pchar(stack_t **stack, unsigned int line_count)
+void j_pchar(stack_t **stack, unsigned int line_count)
 {
 	if (!stack || !(*stack))
 	{

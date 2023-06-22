@@ -5,12 +5,12 @@
 #include "monty.h"
 
 /**
- * mod - will compute the remainder of the division
+ * j_mod - will compute the remainder of the division
  * @stack: given by the main
  * @line_count: the line counter
  * Return: void or nothing
  */
-void mod(stack_t **stack, unsigned int line_count)
+void j_mod(stack_t **stack, unsigned int line_count)
 {
 	int soln;
 
@@ -27,6 +27,6 @@ void mod(stack_t **stack, unsigned int line_count)
 		return;
 	}
 	soln = ((*stack)->next->n) % ((*stack)->n);
-	pop(stack, line_count);
+	j_pop(stack, line_count);
 	(*stack)->n = soln;
 }

@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include "monty.h"
 /**
-* pop - will pop the top
+* j_pop - will pop the top
 * @line_count: line count
 * @stack: main stack
 * Return: void or nothing
 */
-void pop(stack_t **stack, unsigned int line_count)
+void j_pop(stack_t **stack, unsigned int line_count)
 {
 	stack_t *temp = NULL;
 
